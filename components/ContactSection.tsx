@@ -18,6 +18,7 @@ export function ContactSection() {
       email: formData.get("email") || "",
       typePermis: formData.get("type-permis") || "",
       message: formData.get("message") || "",
+      _url: formData.get("_url") || "",
     };
 
     try {
@@ -61,6 +62,12 @@ export function ContactSection() {
             aria-label="Formulaire de contact"
             onSubmit={handleSubmit}
           >
+            {/* Honeypot anti-spam — invisible pour les humains */}
+            <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", top: "-9999px", opacity: 0, height: 0, overflow: "hidden", tabIndex: -1 }}>
+              <label htmlFor="contact-url">URL</label>
+              <input type="text" id="contact-url" name="_url" autoComplete="off" tabIndex={-1} />
+            </div>
+
             <div className="form__row">
               <label htmlFor="nom" className="form__label">
                 Nom et prénom

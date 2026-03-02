@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { Resend } from "resend";
+import { rateLimit } from "@/lib/rate-limit";
 
 type WeekGrid = Record<string, string[]>;
 
@@ -15,6 +16,7 @@ type DispoPayload = {
   semaineA?: WeekGrid;
   semaineB?: WeekGrid;
   commentaire?: string;
+  _url?: string; // honeypot
   source?: string;
   timestamp?: string;
 };
@@ -133,6 +135,23 @@ function buildEmailHtml(
 export async function POST(request: NextRequest) {
   try {
     const body = (await request.json()) as DispoPayload;
+
+    // Honeypot : si le champ cache est rempli, c'est un bot
+    if (body._url && body._url.trim().length > 0) {
+      return NextResponse.json({ ok: true }, { status: 200 });
+    }
+
+    // Rate limiting : max 5 envois par IP par heure
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      request.headers.get("x-real-ip") ||
+      "unknown";
+    if (!rateLimit(ip, 5)) {
+      return NextResponse.json(
+        { ok: false, error: "Trop de demandes. Reessayez dans quelques minutes." },
+        { status: 429 }
+      );
+    }
 
     const prenom = clean(body.prenom);
     const nom = clean(body.nom);

@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { Resend } from "resend";
+import { rateLimit } from "@/lib/rate-limit";
 
 type ContactPayload = {
   nom?: string;
@@ -9,6 +10,7 @@ type ContactPayload = {
   email?: string;
   typePermis?: string;
   message?: string;
+  _url?: string; // honeypot
 };
 
 function clean(v: unknown) {
@@ -23,6 +25,24 @@ function isValidEmail(email: string) {
 export async function POST(request: NextRequest) {
   try {
     const body = (await request.json()) as ContactPayload;
+
+    // Honeypot : si le champ cache est rempli, c'est un bot
+    if (body._url && body._url.trim().length > 0) {
+      // On retourne 200 pour ne pas alerter le bot
+      return NextResponse.json({ ok: true }, { status: 200 });
+    }
+
+    // Rate limiting : max 5 envois par IP par heure
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      request.headers.get("x-real-ip") ||
+      "unknown";
+    if (!rateLimit(ip, 5)) {
+      return NextResponse.json(
+        { ok: false, error: "Trop de demandes. Reessayez dans quelques minutes." },
+        { status: 429 }
+      );
+    }
 
     const nom = clean(body.nom);
     const telephone = clean(body.telephone);

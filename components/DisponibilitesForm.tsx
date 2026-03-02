@@ -160,6 +160,7 @@ export function DisponibilitesForm() {
     const telephone = (fd.get("telephone") as string) || "";
     const formation = (fd.get("formation") as string) || "";
     const commentaire = (fd.get("commentaire") as string) || "";
+    const honeypot = (fd.get("_url") as string) || "";
 
     // Validation front
     if (!prenom || !nom || !email || !telephone) return;
@@ -180,6 +181,7 @@ export function DisponibilitesForm() {
       mode: weekMode,
       semaineA: gridToPayload(gridA),
       commentaire,
+      _url: honeypot,
       source: "site",
       timestamp: new Date().toISOString(),
     };
@@ -224,6 +226,12 @@ export function DisponibilitesForm() {
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
     >
+      {/* Honeypot anti-spam — invisible pour les humains */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", top: "-9999px", opacity: 0, height: 0, overflow: "hidden", tabIndex: -1 }}>
+        <label htmlFor="dispo-url">URL</label>
+        <input type="text" id="dispo-url" name="_url" autoComplete="off" tabIndex={-1} />
+      </div>
+
       {/* Identification */}
       <div className="dispo__identity">
         <div className="dispo__field">
