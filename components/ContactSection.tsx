@@ -63,7 +63,7 @@ export function ContactSection() {
             onSubmit={handleSubmit}
           >
             {/* Honeypot anti-spam — invisible pour les humains */}
-            <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", top: "-9999px", opacity: 0, height: 0, overflow: "hidden", tabIndex: -1 }}>
+            <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", top: "-9999px", opacity: 0, height: 0, overflow: "hidden" }}>
               <label htmlFor="contact-url">URL</label>
               <input type="text" id="contact-url" name="_url" autoComplete="off" tabIndex={-1} />
             </div>
