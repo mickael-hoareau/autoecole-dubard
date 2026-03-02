@@ -1,7 +1,9 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import { CookieBanner } from "@/components/CookieBanner";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 export const metadata: Metadata = {
   title: "Auto-école Dubard – Permis B, Code & Conduite accompagnée",
@@ -27,6 +29,8 @@ export default function RootLayout({
     <html lang="fr">
       <body>
         {children}
+        <Analytics />
+        <GoogleAnalytics />
         <CookieBanner />
       </body>
     </html>

@@ -15,11 +15,13 @@ export function CookieBanner() {
 
   function accept() {
     localStorage.setItem("cookie-consent", "accepted");
+    window.dispatchEvent(new Event("cookie-consent-change"));
     setVisible(false);
   }
 
   function refuse() {
     localStorage.setItem("cookie-consent", "refused");
+    window.dispatchEvent(new Event("cookie-consent-change"));
     setVisible(false);
   }
 
@@ -31,10 +33,10 @@ export function CookieBanner() {
         <div className="cookie-banner__text">
           <strong>Respect de votre vie privée</strong>
           <p>
-            Ce site utilise uniquement des cookies strictement nécessaires à son
-            fonctionnement. Aucun cookie publicitaire ni de suivi n'est déposé.
-            En cliquant sur « Accepter », vous consentez à l'utilisation de ces
-            cookies techniques.{" "}
+            Ce site utilise des cookies pour mesurer son audience (Google
+            Analytics) et améliorer votre expérience. En cliquant sur
+            « Accepter », vous consentez à l'utilisation de ces cookies
+            d'analyse.{" "}
             <a href="/mentions-legales">En savoir plus</a>
           </p>
         </div>
