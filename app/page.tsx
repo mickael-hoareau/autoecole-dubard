@@ -777,6 +777,7 @@ export default async function HomePage() {
         <a href="/mentions-legales">Mentions légales</a>
         <a href="/cgv">CGV</a>
         <a href="/reclamations">Réclamations</a>
+        <a href="/disponibilites">Disponibilités</a>
       </div>
     </div>
   </div>
