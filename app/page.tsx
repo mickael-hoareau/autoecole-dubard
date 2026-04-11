@@ -187,8 +187,8 @@ export default async function HomePage() {
                   </li>
                 </ul>
                 <p className="card__meta">
-                  Prochaines sessions : <strong>02 au 13 mars</strong> et{" "}
-                  <strong>04 au 15 mai 2026</strong> – nombre de places limité
+                  Prochaines sessions : <strong>04 au 15 mai</strong> et{" "}
+                  <strong>13 au 24 juillet 2026</strong> – nombre de places limité
                   par groupe.
                 </p>
               </div>
@@ -253,11 +253,19 @@ export default async function HomePage() {
                 <h4>Prochaines sessions</h4>
                 <div className="horaires__session-list">
                   <div className="horaires__session">
-                    <span className="horaires__session-date">02 – 13 mars 2026</span>
-                    <span className="horaires__session-status horaires__session-status--encours">En cours</span>
+                    <span className="horaires__session-date">04 – 15 mai 2026</span>
+                    <span className="horaires__session-status">Places disponibles</span>
                   </div>
                   <div className="horaires__session">
-                    <span className="horaires__session-date">04 – 15 mai 2026</span>
+                    <span className="horaires__session-date">13 – 24 juillet 2026</span>
+                    <span className="horaires__session-status">Places disponibles</span>
+                  </div>
+                  <div className="horaires__session">
+                    <span className="horaires__session-date">03 – 14 août 2026</span>
+                    <span className="horaires__session-status">Places disponibles</span>
+                  </div>
+                  <div className="horaires__session">
+                    <span className="horaires__session-date">12 – 23 octobre 2026</span>
                     <span className="horaires__session-status">Places disponibles</span>
                   </div>
                 </div>
