@@ -187,9 +187,8 @@ export default async function HomePage() {
                   </li>
                 </ul>
                 <p className="card__meta">
-                  Prochaines sessions : <strong>04 au 15 mai</strong> et{" "}
-                  <strong>13 au 24 juillet 2026</strong> – nombre de places limité
-                  par groupe.
+                  Prochaine session : <strong>03 au 14 août 2026</strong> –
+                  places disponibles, nombre limité par groupe.
                 </p>
               </div>
               <div className="card fade-in fade-in--delayed">
@@ -254,11 +253,11 @@ export default async function HomePage() {
                 <div className="horaires__session-list">
                   <div className="horaires__session">
                     <span className="horaires__session-date">04 – 15 mai 2026</span>
-                    <span className="horaires__session-status">Places disponibles</span>
+                    <span className="horaires__session-status horaires__session-status--termine">Terminé</span>
                   </div>
                   <div className="horaires__session">
                     <span className="horaires__session-date">13 – 24 juillet 2026</span>
-                    <span className="horaires__session-status">Places disponibles</span>
+                    <span className="horaires__session-status horaires__session-status--complet">Complet</span>
                   </div>
                   <div className="horaires__session">
                     <span className="horaires__session-date">03 – 14 août 2026</span>
