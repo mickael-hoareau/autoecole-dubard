@@ -30,6 +30,12 @@
       color: inherit;
     }
 
+    :focus-visible {
+      outline: 2px solid var(--color-primary, #2563eb);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
     /* =========================
        DESIGN SYSTEM
        ========================== */
@@ -739,10 +745,22 @@
       align-items: center;
       gap: 0.35rem;
       color: #1d4ed8;
+      cursor: pointer;
+      transition: gap var(--transition-fast), color var(--transition-fast);
+    }
+
+    .card__cta:hover {
+      color: #2563eb;
+      gap: 0.55rem;
     }
 
     .card__cta span {
       font-size: 1rem;
+      transition: transform var(--transition-fast);
+    }
+
+    .card__cta:hover span {
+      transform: translateX(3px);
     }
 
     /* =========================
@@ -1475,6 +1493,23 @@
       to {
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in,
+      .fade-in--slow,
+      .fade-in--delayed {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
       }
     }
 
