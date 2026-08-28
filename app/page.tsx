@@ -187,7 +187,7 @@ export default async function HomePage() {
                   </li>
                 </ul>
                 <p className="card__meta">
-                  Prochaine session : <strong>12 au 23 octobre 2026</strong> –
+                  Prochaine session : <strong>14 au 25 septembre 2026</strong> –
                   places disponibles, nombre limité par groupe.
                 </p>
               </div>
@@ -262,6 +262,10 @@ export default async function HomePage() {
                   <div className="horaires__session">
                     <span className="horaires__session-date">03 – 14 août 2026</span>
                     <span className="horaires__session-status horaires__session-status--complet">Complet</span>
+                  </div>
+                  <div className="horaires__session">
+                    <span className="horaires__session-date">14 – 25 septembre 2026</span>
+                    <span className="horaires__session-status">Places disponibles</span>
                   </div>
                   <div className="horaires__session">
                     <span className="horaires__session-date">12 – 23 octobre 2026</span>
